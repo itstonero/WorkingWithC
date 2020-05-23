@@ -1,5 +1,6 @@
 #include <transactions/MTI.h>
 #include <appServices/utilities.h>
+#include <appServices/repository.h>
 
 int main()
 { 
@@ -46,7 +47,6 @@ int main()
 
     printf("Assigned New Definition...\n");
     transactions->clear(transactions);
-    */
     char userName[90];
     char passWord[90];
     double age;
@@ -62,6 +62,10 @@ int main()
     age = utility.get_number("Enter Age ::: ", 3, 6);
     printf("%d \n", (int)age);
 
+    */
+    
+    Repository repo = new_Repo();
+    
     return 0;
 }
 

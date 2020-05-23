@@ -4,7 +4,7 @@
 
 typedef struct repo
 {
-    int (*insertMTI)(MTI *);
 }Repository;
 
+Repository new_Repo();
 #endif
