@@ -2,23 +2,26 @@
 
 void convert_MTI_to_string(MTI * mti, char * data_to_record)
 {
+    char time_stamp[30];
+    mti->get_time(time_stamp);
+
     strcpy(data_to_record, TIMESTAMP);
-    strcat(data_to_record, "2020-05-11TT12:34:45:788");
+    strcat(data_to_record, time_stamp);
 
     strcat(data_to_record, MESSAGE);
     strcat(data_to_record, mti->message);
 
     strcat(data_to_record, VERSION);
-    data_to_record[strlen(data_to_record)] = mti->message_version;
+    strncat(data_to_record, mti->message_version, sizeof(char));
 
     strcat(data_to_record, CLASS);
-    data_to_record[strlen(data_to_record)] = mti->message_class;
+    strncat(data_to_record, mti->message_class, sizeof(char));
 
     strcat(data_to_record, FUNCTION);
-    data_to_record[strlen(data_to_record)] = mti->message_function;
+    strncat(data_to_record, mti->message_function, sizeof(char));
 
     strcat(data_to_record, ORIGINATOR);
-    data_to_record[strlen(data_to_record)] = mti->message_originator;
+    strncat(data_to_record, mti->message_originator, sizeof(char));
 
     strcat(data_to_record, FIELDS);
     int count = -1;

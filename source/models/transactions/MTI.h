@@ -4,14 +4,15 @@
 #include <stdio.h>
 #include <string.h>
 #include <generics/generics.h>
+#include <appServices/utilities.h>
 
 typedef struct mti
 {
     char message[300];
-    char message_version;
-    char message_originator;
-    char message_function;
-    char message_class;
+    char message_version[1];
+    char message_originator[1];
+    char message_function[1];
+    char message_class[1];
 
     char bits[200];
     char ** (*unload)();
@@ -20,6 +21,7 @@ typedef struct mti
     char * keys[16];
     int (*decode_response)(struct mti*, int);
     int (*encode_request)(struct mti*);
+    void (*get_time)(char *);
 }MTI;
 
 MTI * new_MTI();

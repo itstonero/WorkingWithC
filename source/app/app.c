@@ -8,20 +8,23 @@ int main()
     Stack * transactions = new_Stack();
     Utility utility = new_UTILITY();
     Repository * repo = new_Repo();
-
+    //  080020200000008000000000000000013239313130303031
+    //  0800A02000000080001004000000000000000000000000013239313130303031001054455354204D455353470301
+    //  00460800A02000000080001004000000000000000000000000013239313130303031001054455354204D455353470301
     while(1)
     {
+        printf("Press Enter to Decode MTI Message.\n");
+        if((int)_getch() != KEY_ENTER)
+        {
+            break;
+        }
+        
         MTI * transaction = new_MTI();
         transactions->push(transactions, transaction);
         utility.get_string("Enter MTI Message ::: ", 4, 512, transaction->message);
         transaction->decode_response(transaction, (int)utility.get_number("Header Length ::: ", 0, 20));
         repo->insert_MTI(transaction);
 
-        printf("Press ESC to cancel\n");
-        if((int)_getch() == KEY_ESC)
-        {
-            break;
-        }
     }
         
     transactions->clear(transactions);

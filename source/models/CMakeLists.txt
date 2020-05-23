@@ -10,6 +10,6 @@ target_include_directories(Generics PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 
 add_library(MTI transactions/MTI.c transactions/MTI.h)
-target_link_libraries(MTI PUBLIC Generics)
+target_link_libraries(MTI PUBLIC Generics Utilities)
 
 target_include_directories(MTI PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

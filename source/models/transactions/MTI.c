@@ -39,10 +39,10 @@ char * populate_fields(MTI * mti, char * bitMaps)
 
 int decode_MTI(MTI * mti, int offset)
 {
-    mti->message_version = mti->message[offset];
-    mti->message_class = mti->message[offset + 1];
-    mti->message_function = mti->message[offset + 2];
-    mti->message_originator = mti->message[offset + 3];
+    mti->message_version[0] = mti->message[offset];
+    mti->message_class[0] = mti->message[offset + 1];
+    mti->message_function[0] = mti->message[offset + 2];
+    mti->message_originator[0] = mti->message[offset + 3];
 
     char * bits = populate_fields(mti, &mti->message[offset + 4]);
 
@@ -92,6 +92,7 @@ MTI * new_MTI()
         mti->keys[i] = keys[i];
     }
     mti->unload = MTI_load;
+    mti->get_time = generate_timestamp;
     mti->decode_response = decode_MTI;
     mti->encode_request = encode_MTI;
     return mti;

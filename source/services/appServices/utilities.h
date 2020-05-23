@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include <conio.h>
 
 #define KEY_ENTER 13
@@ -23,4 +24,6 @@ double (*get_number)(char*, int, int);
 }Utility;
 
 Utility new_UTILITY();
+
+void generate_timestamp(char *);
 #endif

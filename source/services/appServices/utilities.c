@@ -155,3 +155,37 @@ Utility new_UTILITY()
 
     return manager;
 }
+
+void generate_timestamp(char * time_stamp)
+{
+    time_t now;
+    struct tm * ptm;
+
+    char year[4];
+    char month[2];
+    char day[2];
+    char hour[2];
+    char minute[2];
+    char seconds[2];
+
+    now = time(NULL);
+    ptm = gmtime ( &now );
+
+    sprintf(year, "%d%c", ptm->tm_year + 1900, ':');
+    strcpy(time_stamp, year);
+
+    sprintf(month, "%d%c", ptm->tm_mon + 1, ':');
+    strcat(time_stamp, month);
+
+    sprintf(day, "%d%s", ptm->tm_mday, "TT");
+    strcat(time_stamp, day);
+
+    sprintf(hour, "%d%c", ptm->tm_hour+1, ':');
+    strcat(time_stamp, hour);
+
+    sprintf(minute, "%d%c", ptm->tm_min, ':');
+    strcat(time_stamp, minute);
+
+    sprintf(seconds, "%d", ptm->tm_sec);
+    strcat(time_stamp, seconds);
+}
