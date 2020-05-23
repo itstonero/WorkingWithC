@@ -4,14 +4,25 @@
 
 int main()
 { 
-    /*
+
     Stack * transactions = new_Stack();
+    printf("Created Stack Successfully....\n");
+
     MTI * transact1 = new_MTI();
-    char ** defined = transact1->unload();
+    printf("Created MTI template Successfully....\n");
+
+    transactions->push(transactions, transact1);
+    printf("Enqueued MTI Successfully....\n");
 
     strcpy(transact1->message, "080020200000008000000000000000013239313130303031");
+    printf("Copied Message Into Template Successfully...\n");
+    
     transact1->decode_response(transact1, 0);
-    transactions->push(transactions, transact1);
+    printf("Decoded Message Successfully...\n");
+    
+    /*
+    char ** defined = transact1->unload();
+
 
     transact1 = new_MTI();
     strcpy(transact1->message, "0800A02000000080001004000000000000000000000000013239313130303031001054455354204D455353470301");
@@ -46,7 +57,6 @@ int main()
     }
 
     printf("Assigned New Definition...\n");
-    transactions->clear(transactions);
     char userName[90];
     char passWord[90];
     double age;
@@ -64,8 +74,17 @@ int main()
 
     */
     
-    Repository repo = new_Repo();
+    Repository * repo = new_Repo();
+    printf("Created Repository Template Successfully..\n");
     
+    repo->insert_MTI(transact1);
+    printf("Inserted MTI into Repository Successfully..\n");
+    
+    transactions->clear(transactions);
+    printf("Cleared Stack Successfully..\n");
+
+    repo->clear(repo);
+    printf("Cleared Repository Successfully..\n");
     return 0;
 }
 

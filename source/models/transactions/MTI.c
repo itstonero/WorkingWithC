@@ -1,4 +1,5 @@
 #include "MTI.h"
+#define HEX_KEYS 16
 
 int get_number(char hex_char)
 {
@@ -15,7 +16,7 @@ char * populate_fields(MTI * mti, char * bitMaps)
 {
     char * has_secondary = mti->keys[get_number(bitMaps[0])];
 
-    int total_length = (has_secondary[0] == '1') ? 16 * 2 : 16;
+    int total_length = (has_secondary[0] == '1') ? HEX_KEYS * 2 : HEX_KEYS;
 
     int count = -1;
 
@@ -79,13 +80,17 @@ MTI * new_MTI()
 {
 
     MTI * mti = (MTI *)calloc(1, sizeof(MTI));
-    char * keys[16] = {
+    char * keys[HEX_KEYS] = {
                     "0000","0001","0010","0011",
                     "0100","0101","0110","0111",
                     "1000","1001", "1010", "1011", 
                     "1100", "1101", "1110", "1111"
                 };
     
+    for(int i = 0; i < HEX_KEYS; i++)
+    {
+        mti->keys[i] = keys[i];
+    }
     mti->unload = MTI_load;
     mti->decode_response = decode_MTI;
     mti->encode_request = encode_MTI;
