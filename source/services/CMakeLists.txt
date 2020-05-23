@@ -1,3 +1,4 @@
 add_library(Utilities appServices/utilities.c appServices/utilities.h)
+add_library(Repository appServices/repository.c appServices/repository.h)
 
 target_include_directories(Utilities PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
