@@ -46,8 +46,53 @@ int decode_MTI(MTI * mti, int offset)
     mti->message_originator[0] = mti->message[offset + 3];
 
     char * bits = populate_fields(mti, &mti->message[offset + 4]);
-
     strcpy(&mti->bits[0], bits);
+
+    printf("[[ %s ]]\n", mti->message);
+    for(int i =0; i < mti->field_len; i++)
+    {
+        char * value = (char *)mti->definition->retrieve(mti->definition, mti->fields[i]);
+        char * key = strtok(value, ">>>");
+        int amount = atoi(strtok(NULL, ">>>"));
+
+
+        if(key[0] == 'n')
+        {
+            strncpy(value, mti->bits, amount);
+            strcpy(mti->bits, &mti->bits[amount]);
+        }
+
+        if(strcmp(key, "ans") == 0)
+        {
+            if(amount == 0)
+            {
+                strncpy(value, mti->bits, 4);
+                amount = atoi(value);
+
+                strcpy(mti->bits, &mti->bits[4]); 
+            }
+
+            strncpy(value, mti->bits, amount*2);
+            strcpy(mti->bits, &mti->bits[amount*2]);
+            /*
+            char payload[200];
+            int pos = -1;
+            strcpy(payload, "");
+
+            while(strlen(value) > 0)
+            {
+                char temp[2];
+                strncpy(temp, value, 2);
+                strcpy(value, &value[2]);
+                payload[++pos]= (char)(18 + atoi(temp));
+            }
+            
+            strncpy(value, payload, amount);
+            */
+        }
+        
+        printf("\tField = %d ---- Payload = %s\n", mti->fields[i], value);
+    }
 
     return 0;
 }

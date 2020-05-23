@@ -19,7 +19,7 @@ void ACTIVITIES_START_UI()
         utility.get_string("Enter MTI Message ::: ", 4, 512, transaction->message);
         transaction->decode_response(transaction, (int)utility.get_number("Header Length ::: ", 0, 20));
         repo->insert_MTI(transaction);
-
+        transaction->clear(transaction);
     }
         
     transactions->clear(transactions);
