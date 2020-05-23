@@ -44,13 +44,13 @@ void convert_MTI_to_string(MTI * mti, char * data_to_record)
 
 int DB_insert_MTI(MTI * mti)
 {
-    char const* const fileName = "records.txt"; /* should check that argc > 1 */
-    FILE* file = fopen(fileName, "a");
-    
     char converted[1000];
     convert_MTI_to_string(mti, converted);
 
+    FILE* file = fopen(LOG_PATH, "a");
     fputs(converted, file);
+    fclose(file);
+
     return 0;
 }
 

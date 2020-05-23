@@ -1,7 +1,5 @@
 #ifndef APP_REPOSITORY
 #define APP_REPOSITORY
-#include <transactions/mti.h>
-
 #define TIMESTAMP "TIMESTAMP="
 #define VERSION "||VERSION="
 #define MESSAGE "||MESSAGE="
@@ -11,6 +9,7 @@
 #define FIELDS "||FIELDS="
 #define BITS "||BITS="
 #define DELIMITER ":"
+#include <transactions/mti.h>
 typedef struct repo
 {
     int (*insert_MTI)(MTI *);
