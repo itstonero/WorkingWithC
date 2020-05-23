@@ -58,6 +58,8 @@ int encode_MTI(MTI * mti)
 
 int MTI_load(List * fields)
 {
+    char * save_to = (char *)calloc(20, sizeof(char));
+    fields->add(fields, save_to);
 
     char const* const fileName = "C:\\Users\\HP\\Documents\\Software Development\\repos\\WorkingWithC\\source\\models\\fields.txt"; /* should check that argc > 1 */
     FILE* file = fopen(fileName, "r");
@@ -67,6 +69,8 @@ int MTI_load(List * fields)
     {
         char * tokenized = strtok(line, "||");
         tokenized = strtok(NULL, "||");
+        save_to = (char *)calloc(20, sizeof(char));
+        fields->add(fields, save_to);
     }
 
     fclose(file);

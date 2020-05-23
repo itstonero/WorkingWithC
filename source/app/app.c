@@ -3,8 +3,10 @@
 int main()
 { 
     MTI * mti = new_MTI();
-    
+    List * fields = new_List();
+    mti->unload(fields);
     free(mti);
+    fields->clear(fields);
     
     /*
     ACTIVITIES_START_UI();
