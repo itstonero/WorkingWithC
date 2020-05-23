@@ -30,6 +30,7 @@ char * populate_fields(MTI * mti, char * bitMaps)
             if(bin[next] == '1' && i + next > 0)
             {
                 mti->fields[++count] =  ((i * 4) + (next + 1));
+                mti->field_len += 1;
             }
         }
     }
@@ -80,6 +81,16 @@ int MTI_load(List * fields)
     return 0;
 }
 
+void MTI_clear(MTI * mti)
+{
+    if(mti->definition != NULL)
+    {
+        free(mti->definition);
+    }
+
+    if(mti != NULL) free(mti);
+}
+
 MTI * new_MTI()
 {
 
@@ -95,7 +106,10 @@ MTI * new_MTI()
     {
         mti->keys[i] = keys[i];
     }
-    mti->unload = MTI_load;
+    mti->definition = new_List();
+    mti->field_len = 0;
+    MTI_load(mti->definition);
+    mti->clear = MTI_clear;
     mti->get_time = generate_timestamp;
     mti->decode_response = decode_MTI;
     mti->encode_request = encode_MTI;
