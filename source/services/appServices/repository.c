@@ -1,13 +1,4 @@
 #include "repository.h"
-#define TIMESTAMP "TIMESTAMP="
-#define VERSION "||VERSION="
-#define MESSAGE "||MESSAGE="
-#define FUNCTION "||FUNCTION="
-#define CLASS "||CLASS="
-#define ORIGINATOR "||ORIGINATOR="
-#define FIELDS "||FIELDS="
-#define BITS "||BITS="
-#define DELIMITER ":"
 
 void convert_MTI_to_string(MTI * mti, char * data_to_record)
 {
@@ -45,7 +36,7 @@ void convert_MTI_to_string(MTI * mti, char * data_to_record)
 
     strcat(data_to_record, BITS);
     strcat(data_to_record, mti->bits);
-    
+    strcat(data_to_record, "\n");
 }
 
 int DB_insert_MTI(MTI * mti)
@@ -56,10 +47,7 @@ int DB_insert_MTI(MTI * mti)
     char converted[1000];
     convert_MTI_to_string(mti, converted);
 
-    printf(">>>>>>>> START DEMO\n");
-    puts(converted);
-    printf(">>>>>>>> END DEMO\n");
-
+    fputs(converted, file);
     return 0;
 }
 
