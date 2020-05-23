@@ -34,29 +34,6 @@ int main()
     transact1->decode_response(transact1, 4);
     transactions->push(transactions, transact1);
 
-    void * temp = transactions->pop(transactions);
-    
-    while(temp != NULL)
-    {
-        MTI transact = *(MTI*)temp;
-            printf("\n======================================================================================\n");
-            printf("MTI ==> %s\n", transact.message);
-            printf("Version => %c\n", transact.message_version);
-            printf("Class => %c\n", transact.message_class);
-            printf("Function => %c\n", transact.message_function);
-            printf("Originator => %c\n", transact.message_originator);
-            int count = -1;
-            while(transact.fields[++count] != '\0')
-            {
-                printf("Field %d => %d\n", count + 1, transact.fields[count]);
-            }
-            printf("Bits => %s", transact.bits);
-            printf("\n======================================================================================\n");
-
-        temp = transactions->pop(transactions);
-    }
-
-    printf("Assigned New Definition...\n");
     char userName[90];
     char passWord[90];
     double age;
