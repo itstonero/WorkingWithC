@@ -5,6 +5,16 @@ int main()
     MTI * mti = new_MTI();
     List * fields = new_List();
     mti->unload(fields);
+
+
+    ListItem * temp = fields->head->next;
+    while(temp->next != NULL)
+    {
+        puts((char *)temp->value);
+        temp = temp->next;
+    }
+
+    
     free(mti);
     fields->clear(fields);
     

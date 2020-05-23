@@ -60,9 +60,11 @@ int MTI_load(List * fields)
 {
     char * save_to = (char *)calloc(20, sizeof(char));
     fields->add(fields, save_to);
+    strcpy(save_to, "MTI INDEXING");
 
     char const* const fileName = "C:\\Users\\HP\\Documents\\Software Development\\repos\\WorkingWithC\\source\\models\\fields.txt"; /* should check that argc > 1 */
     FILE* file = fopen(fileName, "r");
+
     char line[256];
 
     while (fgets(line, sizeof(line), file)) 
@@ -71,6 +73,7 @@ int MTI_load(List * fields)
         tokenized = strtok(NULL, "||");
         save_to = (char *)calloc(20, sizeof(char));
         fields->add(fields, save_to);
+        strcpy(save_to, tokenized);
     }
 
     fclose(file);
