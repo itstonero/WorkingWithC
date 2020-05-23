@@ -52,8 +52,8 @@ int decode_MTI(MTI * mti, int offset)
     for(int i =0; i < mti->field_len; i++)
     {
         char * value = (char *)mti->definition->retrieve(mti->definition, mti->fields[i]);
-        char * key = strtok(value, ">>>");
-        int amount = atoi(strtok(NULL, ">>>"));
+        char * key = strtok(value, KEY_LENGTH_DELIMITER);
+        int amount = atoi(strtok(NULL, KEY_LENGTH_DELIMITER));
 
 
         if(key[0] == 'n')

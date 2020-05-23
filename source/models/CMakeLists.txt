@@ -13,4 +13,4 @@ add_library(MTI transactions/MTI.c transactions/MTI.h)
 target_link_libraries(MTI PUBLIC Generics Utilities)
 
 target_include_directories(MTI PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
-target_compile_definitions(MTI PUBLIC FIELD_INDEXING_PATH="C:/Users/HP/Documents/Software Development/repos/WorkingWithC/source/models/fields.txt" FIELDS_DELIMITEER="====")
+target_compile_definitions(MTI PUBLIC FIELD_INDEXING_PATH="${CMAKE_CURRENT_SOURCE_DIR}/fields.txt" FIELDS_DELIMITEER="====" KEY_LENGTH_DELIMITER="---")
