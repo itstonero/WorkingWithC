@@ -56,14 +56,12 @@ int encode_MTI(MTI * mti)
     return 0;
 }
 
-char ** MTI_load()
+int MTI_load(List * fields)
 {
-    char ** fields = (char **)calloc(130, sizeof(char));
 
     char const* const fileName = "C:\\Users\\HP\\Documents\\Software Development\\repos\\WorkingWithC\\source\\models\\fields.txt"; /* should check that argc > 1 */
     FILE* file = fopen(fileName, "r");
     char line[256];
-    strcpy(&fields[0][0], "MTI");
 
     while (fgets(line, sizeof(line), file)) 
     {
@@ -73,7 +71,7 @@ char ** MTI_load()
 
     fclose(file);
 
-    return fields;
+    return 0;
 }
 
 MTI * new_MTI()

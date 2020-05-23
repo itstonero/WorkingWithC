@@ -15,7 +15,7 @@ typedef struct mti
     char message_class[1];
 
     char bits[200];
-    char ** (*unload)();
+    int (*unload)(List *);
 
     int fields[20];
     char * keys[16];
